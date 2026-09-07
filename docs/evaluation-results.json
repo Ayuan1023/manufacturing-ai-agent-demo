@@ -1,0 +1,1046 @@
+{
+  "test_date": "2026-09-07 14:33:36",
+  "run_mode": "mock",
+  "test_conditions": "ChromaDB/fastembed热启动；首次冷启动RAG延迟预计500-2000ms",
+  "total_scenarios": 7,
+  "runs_per_scenario": 3,
+  "total_function_tests": 21,
+  "http_server_alive": true,
+  "overall": {
+    "tool_recall_pct": 100.0,
+    "tool_precision_pct": 71.4,
+    "avg_func_latency_ms": 38.41,
+    "avg_response_tokens": 80.0
+  },
+  "scenarios": [
+    {
+      "scenario_id": "S1",
+      "category": "设备查询",
+      "query": "现在有哪些设备告警？",
+      "expected_tools": [
+        "get_alarm_equipment"
+      ],
+      "func_avg_latency_ms": 36.85,
+      "func_avg_recall_pct": 100.0,
+      "func_avg_precision_pct": 50.0,
+      "avg_response_tokens": 142.0,
+      "func_runs": [
+        {
+          "latency_ms": 29.63,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_alarm_equipment",
+            "get_equipment_list"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 394,
+          "estimated_tokens": 142,
+          "error": null
+        },
+        {
+          "latency_ms": 40.63,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_alarm_equipment",
+            "get_equipment_list"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 394,
+          "estimated_tokens": 142,
+          "error": null
+        },
+        {
+          "latency_ms": 40.28,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_alarm_equipment",
+            "get_equipment_list"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 394,
+          "estimated_tokens": 142,
+          "error": null
+        }
+      ],
+      "http_avg_latency_ms": 39.36,
+      "http_runs": [
+        {
+          "http_latency_ms": 38.44,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_alarm_equipment",
+            "get_equipment_list"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 394,
+          "estimated_tokens": 142,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 39.88,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_alarm_equipment",
+            "get_equipment_list"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 394,
+          "estimated_tokens": 142,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 39.76,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_alarm_equipment",
+            "get_equipment_list"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 394,
+          "estimated_tokens": 142,
+          "http_status": 200,
+          "error": null
+        }
+      ],
+      "sse_avg_ttft_ms": 638.32,
+      "sse_avg_total_ms": 4663.21,
+      "sse_runs": [
+        {
+          "sse_total_ms": 4655.22,
+          "ttft_ms": 633.6,
+          "event_count": 400,
+          "event_order_valid": true,
+          "tool_calls": [
+            "get_alarm_equipment",
+            "get_equipment_list"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 4665.71,
+          "ttft_ms": 638.16,
+          "event_count": 400,
+          "event_order_valid": true,
+          "tool_calls": [
+            "get_alarm_equipment",
+            "get_equipment_list"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 4668.71,
+          "ttft_ms": 643.21,
+          "event_count": 400,
+          "event_order_valid": true,
+          "tool_calls": [
+            "get_alarm_equipment",
+            "get_equipment_list"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "error": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "S2",
+      "category": "SOP检索",
+      "query": "怎么换模？",
+      "expected_tools": [
+        "search_sop"
+      ],
+      "func_avg_latency_ms": 2.53,
+      "func_avg_recall_pct": 100.0,
+      "func_avg_precision_pct": 100.0,
+      "avg_response_tokens": 28.0,
+      "func_runs": [
+        {
+          "latency_ms": 2.39,
+          "tool_count": 1,
+          "tool_calls": [
+            "search_sop"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 65,
+          "estimated_tokens": 28,
+          "error": null
+        },
+        {
+          "latency_ms": 2.89,
+          "tool_count": 1,
+          "tool_calls": [
+            "search_sop"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 65,
+          "estimated_tokens": 28,
+          "error": null
+        },
+        {
+          "latency_ms": 2.32,
+          "tool_count": 1,
+          "tool_calls": [
+            "search_sop"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 65,
+          "estimated_tokens": 28,
+          "error": null
+        }
+      ],
+      "http_avg_latency_ms": 3.68,
+      "http_runs": [
+        {
+          "http_latency_ms": 3.47,
+          "tool_count": 1,
+          "tool_calls": [
+            "search_sop"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 65,
+          "estimated_tokens": 28,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 3.77,
+          "tool_count": 1,
+          "tool_calls": [
+            "search_sop"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 65,
+          "estimated_tokens": 28,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 3.81,
+          "tool_count": 1,
+          "tool_calls": [
+            "search_sop"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 65,
+          "estimated_tokens": 28,
+          "http_status": 200,
+          "error": null
+        }
+      ],
+      "sse_avg_ttft_ms": 301.49,
+      "sse_avg_total_ms": 965.65,
+      "sse_runs": [
+        {
+          "sse_total_ms": 969.31,
+          "ttft_ms": 301.94,
+          "event_count": 69,
+          "event_order_valid": true,
+          "tool_calls": [
+            "search_sop"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 962.81,
+          "ttft_ms": 300.65,
+          "event_count": 69,
+          "event_order_valid": true,
+          "tool_calls": [
+            "search_sop"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 964.82,
+          "ttft_ms": 301.89,
+          "event_count": 69,
+          "event_order_valid": true,
+          "tool_calls": [
+            "search_sop"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "error": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "S3",
+      "category": "异常诊断",
+      "query": "E001是什么故障？",
+      "expected_tools": [
+        "search_fault_code"
+      ],
+      "func_avg_latency_ms": 35.41,
+      "func_avg_recall_pct": 100.0,
+      "func_avg_precision_pct": 50.0,
+      "avg_response_tokens": 101.0,
+      "func_runs": [
+        {
+          "latency_ms": 32.71,
+          "tool_count": 2,
+          "tool_calls": [
+            "search_fault_code",
+            "get_alarm_equipment"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 231,
+          "estimated_tokens": 101,
+          "error": null
+        },
+        {
+          "latency_ms": 37.44,
+          "tool_count": 2,
+          "tool_calls": [
+            "search_fault_code",
+            "get_alarm_equipment"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 231,
+          "estimated_tokens": 101,
+          "error": null
+        },
+        {
+          "latency_ms": 36.08,
+          "tool_count": 2,
+          "tool_calls": [
+            "search_fault_code",
+            "get_alarm_equipment"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 231,
+          "estimated_tokens": 101,
+          "error": null
+        }
+      ],
+      "http_avg_latency_ms": 39.43,
+      "http_runs": [
+        {
+          "http_latency_ms": 43.18,
+          "tool_count": 2,
+          "tool_calls": [
+            "search_fault_code",
+            "get_alarm_equipment"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 231,
+          "estimated_tokens": 101,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 40.33,
+          "tool_count": 2,
+          "tool_calls": [
+            "search_fault_code",
+            "get_alarm_equipment"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 231,
+          "estimated_tokens": 101,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 34.77,
+          "tool_count": 2,
+          "tool_calls": [
+            "search_fault_code",
+            "get_alarm_equipment"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 231,
+          "estimated_tokens": 101,
+          "http_status": 200,
+          "error": null
+        }
+      ],
+      "sse_avg_ttft_ms": 634.57,
+      "sse_avg_total_ms": 2983.91,
+      "sse_runs": [
+        {
+          "sse_total_ms": 2995.95,
+          "ttft_ms": 634.18,
+          "event_count": 237,
+          "event_order_valid": true,
+          "tool_calls": [
+            "search_fault_code",
+            "get_alarm_equipment"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 2978.22,
+          "ttft_ms": 632.66,
+          "event_count": 237,
+          "event_order_valid": true,
+          "tool_calls": [
+            "search_fault_code",
+            "get_alarm_equipment"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 2977.57,
+          "ttft_ms": 636.86,
+          "event_count": 237,
+          "event_order_valid": true,
+          "tool_calls": [
+            "search_fault_code",
+            "get_alarm_equipment"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "error": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "S4",
+      "category": "预测维护",
+      "query": "CNC-001最近维护记录",
+      "expected_tools": [
+        "get_maintenance_history"
+      ],
+      "func_avg_latency_ms": 67.9,
+      "func_avg_recall_pct": 100.0,
+      "func_avg_precision_pct": 50.0,
+      "avg_response_tokens": 80.0,
+      "func_runs": [
+        {
+          "latency_ms": 84.49,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_equipment_history",
+            "get_maintenance_history"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 198,
+          "estimated_tokens": 80,
+          "error": null
+        },
+        {
+          "latency_ms": 61.22,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_equipment_history",
+            "get_maintenance_history"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 198,
+          "estimated_tokens": 80,
+          "error": null
+        },
+        {
+          "latency_ms": 57.99,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_equipment_history",
+            "get_maintenance_history"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 198,
+          "estimated_tokens": 80,
+          "error": null
+        }
+      ],
+      "http_avg_latency_ms": 64.51,
+      "http_runs": [
+        {
+          "http_latency_ms": 70.93,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_equipment_history",
+            "get_maintenance_history"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 198,
+          "estimated_tokens": 80,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 62.18,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_equipment_history",
+            "get_maintenance_history"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 198,
+          "estimated_tokens": 80,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 60.42,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_equipment_history",
+            "get_maintenance_history"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 198,
+          "estimated_tokens": 80,
+          "http_status": 200,
+          "error": null
+        }
+      ],
+      "sse_avg_ttft_ms": 660.45,
+      "sse_avg_total_ms": 2668.37,
+      "sse_runs": [
+        {
+          "sse_total_ms": 2679.23,
+          "ttft_ms": 672.07,
+          "event_count": 204,
+          "event_order_valid": true,
+          "tool_calls": [
+            "get_equipment_history",
+            "get_maintenance_history"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 2667.44,
+          "ttft_ms": 655.17,
+          "event_count": 204,
+          "event_order_valid": true,
+          "tool_calls": [
+            "get_equipment_history",
+            "get_maintenance_history"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 2658.44,
+          "ttft_ms": 654.11,
+          "event_count": 204,
+          "event_order_valid": true,
+          "tool_calls": [
+            "get_equipment_history",
+            "get_maintenance_history"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "error": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "S5",
+      "category": "工单分析",
+      "query": "本周生产情况怎么样？",
+      "expected_tools": [
+        "get_production_stats"
+      ],
+      "func_avg_latency_ms": 20.38,
+      "func_avg_recall_pct": 100.0,
+      "func_avg_precision_pct": 100.0,
+      "avg_response_tokens": 61.0,
+      "func_runs": [
+        {
+          "latency_ms": 19.54,
+          "tool_count": 1,
+          "tool_calls": [
+            "get_production_stats"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 152,
+          "estimated_tokens": 61,
+          "error": null
+        },
+        {
+          "latency_ms": 19.27,
+          "tool_count": 1,
+          "tool_calls": [
+            "get_production_stats"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 152,
+          "estimated_tokens": 61,
+          "error": null
+        },
+        {
+          "latency_ms": 22.34,
+          "tool_count": 1,
+          "tool_calls": [
+            "get_production_stats"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 152,
+          "estimated_tokens": 61,
+          "error": null
+        }
+      ],
+      "http_avg_latency_ms": 24.8,
+      "http_runs": [
+        {
+          "http_latency_ms": 32.85,
+          "tool_count": 1,
+          "tool_calls": [
+            "get_production_stats"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 152,
+          "estimated_tokens": 61,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 18.79,
+          "tool_count": 1,
+          "tool_calls": [
+            "get_production_stats"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 152,
+          "estimated_tokens": 61,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 22.76,
+          "tool_count": 1,
+          "tool_calls": [
+            "get_production_stats"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 152,
+          "estimated_tokens": 61,
+          "http_status": 200,
+          "error": null
+        }
+      ],
+      "sse_avg_ttft_ms": 323.67,
+      "sse_avg_total_ms": 1864.49,
+      "sse_runs": [
+        {
+          "sse_total_ms": 1869.31,
+          "ttft_ms": 331.08,
+          "event_count": 156,
+          "event_order_valid": true,
+          "tool_calls": [
+            "get_production_stats"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 1861.24,
+          "ttft_ms": 320.52,
+          "event_count": 156,
+          "event_order_valid": true,
+          "tool_calls": [
+            "get_production_stats"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 1862.92,
+          "ttft_ms": 319.41,
+          "event_count": 156,
+          "event_order_valid": true,
+          "tool_calls": [
+            "get_production_stats"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "error": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "S6",
+      "category": "物料齐套",
+      "query": "WO-2026-0001的物料齐套吗？",
+      "expected_tools": [
+        "check_material_availability"
+      ],
+      "func_avg_latency_ms": 67.39,
+      "func_avg_recall_pct": 100.0,
+      "func_avg_precision_pct": 50.0,
+      "avg_response_tokens": 84.0,
+      "func_runs": [
+        {
+          "latency_ms": 61.03,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_work_order_detail",
+            "check_material_availability"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 212,
+          "estimated_tokens": 84,
+          "error": null
+        },
+        {
+          "latency_ms": 70.48,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_work_order_detail",
+            "check_material_availability"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 212,
+          "estimated_tokens": 84,
+          "error": null
+        },
+        {
+          "latency_ms": 70.67,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_work_order_detail",
+            "check_material_availability"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 212,
+          "estimated_tokens": 84,
+          "error": null
+        }
+      ],
+      "http_avg_latency_ms": 74.78,
+      "http_runs": [
+        {
+          "http_latency_ms": 86.25,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_work_order_detail",
+            "check_material_availability"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 212,
+          "estimated_tokens": 84,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 70.73,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_work_order_detail",
+            "check_material_availability"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 212,
+          "estimated_tokens": 84,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 67.35,
+          "tool_count": 2,
+          "tool_calls": [
+            "get_work_order_detail",
+            "check_material_availability"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "response_length": 212,
+          "estimated_tokens": 84,
+          "http_status": 200,
+          "error": null
+        }
+      ],
+      "sse_avg_ttft_ms": 662.46,
+      "sse_avg_total_ms": 2812.93,
+      "sse_runs": [
+        {
+          "sse_total_ms": 2819.67,
+          "ttft_ms": 672.39,
+          "event_count": 218,
+          "event_order_valid": true,
+          "tool_calls": [
+            "get_work_order_detail",
+            "check_material_availability"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 2803.1,
+          "ttft_ms": 655.26,
+          "event_count": 218,
+          "event_order_valid": true,
+          "tool_calls": [
+            "get_work_order_detail",
+            "check_material_availability"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 2816.03,
+          "ttft_ms": 659.72,
+          "event_count": 218,
+          "event_order_valid": true,
+          "tool_calls": [
+            "get_work_order_detail",
+            "check_material_availability"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 50.0,
+          "error": null
+        }
+      ]
+    },
+    {
+      "scenario_id": "S7",
+      "category": "工单草稿",
+      "query": "帮我创建一个工单",
+      "expected_tools": [
+        "create_work_order_draft"
+      ],
+      "func_avg_latency_ms": 38.42,
+      "func_avg_recall_pct": 100.0,
+      "func_avg_precision_pct": 100.0,
+      "avg_response_tokens": 66.0,
+      "func_runs": [
+        {
+          "latency_ms": 37.57,
+          "tool_count": 1,
+          "tool_calls": [
+            "create_work_order_draft"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 146,
+          "estimated_tokens": 66,
+          "error": null
+        },
+        {
+          "latency_ms": 39.47,
+          "tool_count": 1,
+          "tool_calls": [
+            "create_work_order_draft"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 146,
+          "estimated_tokens": 66,
+          "error": null
+        },
+        {
+          "latency_ms": 38.23,
+          "tool_count": 1,
+          "tool_calls": [
+            "create_work_order_draft"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 146,
+          "estimated_tokens": 66,
+          "error": null
+        }
+      ],
+      "http_avg_latency_ms": 39.46,
+      "http_runs": [
+        {
+          "http_latency_ms": 39.82,
+          "tool_count": 1,
+          "tool_calls": [
+            "create_work_order_draft"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 146,
+          "estimated_tokens": 66,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 41.71,
+          "tool_count": 1,
+          "tool_calls": [
+            "create_work_order_draft"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 146,
+          "estimated_tokens": 66,
+          "http_status": 200,
+          "error": null
+        },
+        {
+          "http_latency_ms": 36.84,
+          "tool_count": 1,
+          "tool_calls": [
+            "create_work_order_draft"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "response_length": 146,
+          "estimated_tokens": 66,
+          "http_status": 200,
+          "error": null
+        }
+      ],
+      "sse_avg_ttft_ms": 339.32,
+      "sse_avg_total_ms": 1823.35,
+      "sse_runs": [
+        {
+          "sse_total_ms": 1820.28,
+          "ttft_ms": 335.8,
+          "event_count": 150,
+          "event_order_valid": true,
+          "tool_calls": [
+            "create_work_order_draft"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 1824.48,
+          "ttft_ms": 340.31,
+          "event_count": 150,
+          "event_order_valid": true,
+          "tool_calls": [
+            "create_work_order_draft"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "error": null
+        },
+        {
+          "sse_total_ms": 1825.28,
+          "ttft_ms": 341.85,
+          "event_count": 150,
+          "event_order_valid": true,
+          "tool_calls": [
+            "create_work_order_draft"
+          ],
+          "tool_recall_pct": 100.0,
+          "tool_precision_pct": 100.0,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "multi_turn": {
+    "scenario_id": "S8",
+    "category": "多轮对话",
+    "turns": [
+      {
+        "turn": 1,
+        "query": "现在有哪些设备告警？",
+        "latency_ms": 49.84,
+        "tool_calls": [
+          "get_alarm_equipment",
+          "get_equipment_list"
+        ],
+        "tool_recall_pct": 100.0,
+        "tool_precision_pct": 50.0
+      },
+      {
+        "turn": 2,
+        "query": "CNC-001详细状态怎么样？",
+        "latency_ms": 20.41,
+        "tool_calls": [
+          "get_equipment_status"
+        ],
+        "tool_recall_pct": 100.0,
+        "tool_precision_pct": 100.0
+      },
+      {
+        "turn": 3,
+        "query": "本周生产情况呢？",
+        "latency_ms": 21.71,
+        "tool_calls": [
+          "get_production_stats"
+        ],
+        "tool_recall_pct": 100.0,
+        "tool_precision_pct": 100.0
+      }
+    ],
+    "all_pass": true
+  },
+  "boundary_tests": [
+    {
+      "id": "B1",
+      "category": "无效设备ID",
+      "query": "CNC-999状态怎么样？",
+      "expect_error": true,
+      "passed": true,
+      "tool_calls": [
+        "get_equipment_status"
+      ],
+      "note": "无效ID应返回友好提示"
+    },
+    {
+      "id": "B2",
+      "category": "无关查询",
+      "query": "今天天气怎么样？",
+      "expect_default_fallback": true,
+      "passed": true,
+      "tool_count": 2,
+      "note": "调用2个工具（Mock默认设备概览分支）"
+    },
+    {
+      "id": "B3",
+      "category": "空消息",
+      "query": "",
+      "expect_http_400": true,
+      "passed": true,
+      "http_status": 400,
+      "note": "返回HTTP 400"
+    }
+  ]
+}
