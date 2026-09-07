@@ -1,113 +1,111 @@
 # 制造业智能化 AI Agent Demo
 
-基于 MCP（Model Context Protocol）协议的制造业 AI Agent 演示项目，展示如何用大模型驱动企业内部系统的智能问答与操作编排。
+一个可本地运行的制造业 Agent 演示项目，覆盖设备监控、MES 工单、质量与库存查询、SOP 检索，以及只生成草稿的工单操作。
 
-## 项目特性
+## 能展示什么
 
-- **MCP 协议对接**：通过 MCP Server 将设备管理、生产调度、质量检测、知识库等企业系统封装为标准化工具
-- **LangGraph 智能编排**：基于状态机的多轮推理工作流，支持工具调用、RAG 检索、结果聚合
-- **制造业场景模拟**：内置离散制造车间模拟器，生成设备状态、工单、质检、库存等真实感数据
-- **流式对话接口**：FastAPI + SSE 流式输出，支持逐 token 渲染与中间思考过程展示
-- **可视化前端**：聊天面板 + 实时数据看板 + 设备拓扑图，一体化交互体验
+- 设备状态、告警和温度看板
+- 工单列表、工单详情和生产统计
+- 物料齐套、库存预警和质量分析
+- SOP 与故障代码查询
+- Agent 工具调用过程和 SSE 流式回复
+- 工单草稿生成，默认不会写入真实系统
+
+项目自带确定性的模拟数据，不配置大模型 Key 也可以完整演示。配置 OpenAI 兼容接口后，可以切换到 LLM 工具调用模式。
 
 ## 技术栈
 
 | 层级 | 技术 |
-|------|------|
-| Agent 引擎 | LangChain + LangGraph |
-| 工具协议 | MCP (Model Context Protocol) |
-| 向量检索 | ChromaDB + sentence-transformers |
-| API 层 | FastAPI + Uvicorn |
-| 数据模拟 | Pandas + NumPy |
-| 前端 | Vue 3 + Vite + ECharts |
-| 测试 | Pytest + pytest-asyncio |
+| --- | --- |
+| Agent 编排 | LangGraph + LangChain Core |
+| API | FastAPI + Uvicorn |
+| 工具层 | FastMCP 兼容适配层 |
+| 检索 | 本地关键词兜底；可选 ChromaDB + FastEmbed |
+| 数据 | JSON 模拟数据 + NumPy/Pandas |
+| 前端 | React 18 + TypeScript + Vite + ECharts |
 
-## 目录结构
+## 快速启动
 
-```
-manufacturing-ai-agent-demo/
-├── backend/
-│   ├── agent/              # AI Agent 核心（LangGraph 工作流、工具注册、RAG）
-│   ├── api/                # FastAPI 路由与接口
-│   ├── data/               # 模拟数据（生成后忽略）
-│   ├── mcp_servers/        # MCP 服务器集群
-│   └── simulator/          # 制造业场景模拟器
-├── frontend/               # 前端界面
-├── docs/                   # 项目文档
-├── tests/                  # 测试用例
-├── blog/                   # 技术博客文章
-├── pyproject.toml          # Python 项目配置
-└── README.md
-```
-
-## 快速开始
-
-### 1. 环境准备
+需要 Python 3.11+、Node.js 18+。
 
 ```bash
-# Python 3.10+
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+python3.11 -m venv .venv
+source .venv/bin/activate
 pip install -e ".[dev]"
-```
 
-### 2. 配置环境变量
-
-```bash
-cp .env.example .env
-# 编辑 .env，填入 OPENAI_API_KEY 等配置
-```
-
-### 3. 生成模拟数据
-
-```bash
-python -m backend.simulator.generate_all
-```
-
-### 4. 启动后端服务
-
-```bash
-uvicorn backend.api.main:app --reload --port 8000
-```
-
-### 5. 启动前端
-
-```bash
 cd frontend
 npm install
-npm run dev
+cd ..
+
+./scripts/start_demo.sh
 ```
 
-访问 http://localhost:5173 即可使用。
+启动后访问 <http://localhost:5173>。
 
-## 核心场景演示
+脚本会自动生成模拟数据并启动：
 
-### 场景一：设备异常诊断
+- 前端：<http://localhost:5173>
+- 后端：<http://localhost:8000>
+- 健康检查：<http://localhost:8000/api/health>
 
-> 用户："3 号 CNC 机床今天报警了吗？什么原因？"
+## 推荐演示问题
 
-Agent 调用设备管理 MCP Server 查询报警记录 → 结合知识库 RAG 检索故障手册 → 给出诊断结论与处理建议。
+```text
+现在有哪些设备告警？
+CNC-001状态怎么样？
+本周生产情况怎么样？
+WO-2026-0001的物料齐套吗？
+E001是什么故障？
+怎么换模？
+帮我创建一个工单
+```
 
-### 场景二：生产排程查询
+## 可选能力
 
-> 用户："本周 A 线的工单完成率怎么样？哪个工单延期了？"
+### LLM 模式
 
-Agent 调用生产调度 MCP Server 查询工单状态 → 聚合统计 → 识别延期工单及原因。
+```bash
+pip install -e ".[dev,llm]"
+export OPENAI_API_KEY="your-key"
+export OPENAI_API_BASE="https://api.openai.com/v1"
+export OPENAI_MODEL="gpt-4o-mini"
+./scripts/start_demo.sh
+```
 
-### 场景三：质量追溯
+没有 `OPENAI_API_KEY` 时，系统自动使用规则 Mock 模式，适合离线演示。
 
-> 用户："批次 LOT-20260901-003 的不良品主要是什么缺陷？关联到哪台设备？"
+### 向量检索
 
-Agent 调用质量检测 MCP Server 查询质检记录 → 按缺陷类型聚合 → 关联设备与工艺参数。
+默认使用本地关键词检索，启动快且不需要下载模型。需要启用 ChromaDB + FastEmbed 时：
 
-## MCP 服务器清单
+```bash
+pip install -e ".[dev,rag]"
+export ENABLE_VECTOR_RAG=1
+./scripts/start_demo.sh
+```
 
-| 服务器 | 功能 | 核心工具 |
-|--------|------|----------|
-| `equipment_mcp` | 设备管理 | 查询设备状态、报警记录、维护计划 |
-| `production_mcp` | 生产调度 | 查询工单、排程、产能统计 |
-| `quality_mcp` | 质量检测 | 查询质检记录、缺陷分析、批次追溯 |
-| `knowledge_mcp` | 知识库 | 故障手册检索、工艺文档查询 |
+## 项目结构
+
+```text
+backend/
+  agent/              Agent 状态机、工具注册和回复生成
+  mcp_servers/        设备、MES、知识库工具
+  simulator/          确定性模拟数据生成器
+  main.py             FastAPI 入口
+frontend/             React 前端和设备看板
+scripts/              本地启动脚本
+tests/                冒烟测试
+docs/                 技术报告和评测记录
+```
+
+## 测试
+
+```bash
+.venv/bin/pytest -q
+cd frontend && npm run build
+```
+
+MCP 服务器模块保留了 FastMCP 入口；Agent 的本地演示调用通过兼容层工作，从而避免 MCP SDK 版本变化阻塞基础 Demo。生产接入时，应将这些工具替换为经过权限控制的 MES、ERP、WMS 或设备 API。
 
 ## 许可证
 

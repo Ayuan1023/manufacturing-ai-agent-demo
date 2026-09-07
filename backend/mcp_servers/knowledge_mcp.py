@@ -5,9 +5,13 @@
 """
 import json
 import hashlib
+import os
 from pathlib import Path
 from typing import Optional
-from fastmcp import FastMCP
+try:
+    from .mcp_compat import FastMCP
+except ImportError:
+    from mcp_compat import FastMCP
 
 DATA_DIR = Path(__file__).parent.parent / "data"
 CHROMA_DIR = DATA_DIR / "chroma"
@@ -95,6 +99,46 @@ def _get_collection():
     return collection
 
 
+def _keyword_search_sop(query: str, top_k: int) -> dict:
+    """Offline fallback for the demo when vector dependencies are unavailable."""
+    sops = _load_json("sop_documents.json")
+    if isinstance(sops, dict) and "error" in sops:
+        return sops
+
+    query_text = query.strip().lower()
+    keywords = [query_text]
+    for keyword in ["换模", "换刀", "主轴", "温度", "安全", "保养", "校准", "报警", "故障"]:
+        if keyword in query_text and keyword not in keywords:
+            keywords.append(keyword)
+
+    ranked = []
+    for sop in sops:
+        haystack = f"{sop['title']}\n{sop['content']}".lower()
+        score = sum(haystack.count(keyword) for keyword in keywords if keyword)
+        ranked.append((score, sop))
+
+    ranked.sort(key=lambda item: item[0], reverse=True)
+    results = []
+    for rank, (score, sop) in enumerate(ranked[:top_k], start=1):
+        results.append({
+            "sop_id": sop["id"],
+            "title": sop["title"],
+            "category": sop["category"],
+            "equipment": sop["equipment"],
+            "similarity": round(min(99.0, 50.0 + score * 10.0), 1),
+            "content": sop["content"][:500] + ("..." if len(sop["content"]) > 500 else ""),
+            "rank": rank,
+        })
+
+    return {
+        "query": query,
+        "result_count": len(results),
+        "distinct_documents": len(results),
+        "mode": "keyword-fallback",
+        "results": results,
+    }
+
+
 @mcp.tool()
 def search_sop(query: str, top_k: int = 5) -> dict:
     """
@@ -105,7 +149,13 @@ def search_sop(query: str, top_k: int = 5) -> dict:
         query: 搜索问题，如"主轴过热怎么办"、"CNC安全操作规程"、"换模步骤"
         top_k: 返回最相关的文档数量（按SOP去重后），默认5
     """
-    collection = _get_collection()
+    if os.environ.get("ENABLE_VECTOR_RAG", "0") != "1":
+        return _keyword_search_sop(query, top_k)
+
+    try:
+        collection = _get_collection()
+    except Exception:
+        return _keyword_search_sop(query, top_k)
 
     # 多取一些结果用于去重
     raw_results = collection.query(query_texts=[query], n_results=top_k * 3)

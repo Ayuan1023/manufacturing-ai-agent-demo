@@ -5,7 +5,10 @@
 import json
 from pathlib import Path
 from typing import Optional
-from fastmcp import FastMCP
+try:
+    from .mcp_compat import FastMCP
+except ImportError:
+    from mcp_compat import FastMCP
 
 DATA_DIR = Path(__file__).parent.parent / "data"
 

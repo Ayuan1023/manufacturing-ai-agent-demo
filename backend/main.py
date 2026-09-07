@@ -16,6 +16,42 @@ from pydantic import BaseModel, Field
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
 
+
+DATA_DIR = Path(__file__).parent / "data"
+REQUIRED_DATA_FILES = {
+    "equipment_status.json",
+    "equipment_timeseries.json",
+    "fault_codes.json",
+    "inventory.json",
+    "maintenance_orders.json",
+    "mes_work_orders.json",
+    "product_bom.json",
+    "sop_documents.json",
+}
+
+
+def ensure_demo_data():
+    """Generate the deterministic local dataset on a fresh clone."""
+    if REQUIRED_DATA_FILES.issubset({path.name for path in DATA_DIR.glob("*.json")}):
+        return
+
+    from simulator.generate_data import (
+        generate_bom_and_inventory,
+        generate_equipment_timeseries,
+        generate_maintenance_orders,
+        generate_sop_docs,
+        generate_work_orders,
+    )
+
+    generate_equipment_timeseries()
+    generate_work_orders()
+    generate_sop_docs()
+    generate_bom_and_inventory()
+    generate_maintenance_orders()
+
+
+ensure_demo_data()
+
 from agent.graph import (
     _mock_tool_decision,
     _mock_generate_response,
@@ -274,7 +310,7 @@ TEMP_FIELD_MAP = {
 @app.get("/api/equipment/status")
 async def get_equipment_status():
     """获取设备状态列表（供前端监控面板使用）"""
-    data_dir = Path(__file__).parent / "data"
+    data_dir = DATA_DIR
     try:
         with open(data_dir / "equipment_status.json", "r", encoding="utf-8") as f:
             raw = json.load(f)

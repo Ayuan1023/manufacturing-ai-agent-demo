@@ -6,12 +6,15 @@ import os
 import json
 import re
 from typing import Literal
+from dotenv import load_dotenv
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
 from langgraph.graph import StateGraph, END
 
 from .state import AgentState
 from .prompts import SYSTEM_PROMPT
 from .tools import get_all_tools, WRITE_TOOLS, TOOL_DESCRIPTIONS
+
+load_dotenv()
 
 # 全局工具列表
 TOOLS = get_all_tools()
